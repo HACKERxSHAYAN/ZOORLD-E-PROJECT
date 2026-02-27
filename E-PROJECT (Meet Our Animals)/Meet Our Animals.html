@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Our Animals | Zoorld</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            padding: 1.2rem 5% !important;
+            background: transparent !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1050;
+        }
+        .navbar.scrolled {
+            background: #001a11 !important;
+            padding: 0.8rem 5% !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(212, 240, 30, 0.2);
+        }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.8rem; color: #ffffff !important; }
+        .nav-link { color: #ffffff !important; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.2px; margin: 0 10px; opacity: 0.8; transition: 0.3s; }
+        .nav-link:hover { color: #d4f01e !important; opacity: 1; }
+        .btn-ticket { background: #d4f01e; color: #001a11 !important; padding: 10px 24px !important; border-radius: 4px; font-weight: 800 !important; font-size: 0.75rem; text-decoration: none; border: none; transition: 0.3s; }
+        .btn-ticket:hover { background: #ffffff; }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            background: #001a11 !important;
+            border: 1px solid rgba(212, 240, 30, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .dropdown-item {
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .dropdown-item:hover {
+            background: #d4f01e;
+            color: #001a11;
+        }
+        
+        /* Mobile Navbar */
+        @media (max-width: 990px) {
+            .navbar-collapse {
+                background: #001a11;
+                margin-top: 15px;
+                border-radius: 15px;
+                padding: 20px;
+                border: 1px solid #d4f01e;
+            }
+        }
+    </style>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <!-- ===========================
+         NAVIGATION
+    ============================ -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ZOORLD.</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Meet Our Animals.html">Animals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More <span style="font-size: 0.8rem;">⋯</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="../volunteer program.html">Volunteer</a></li>
+                            <li><a class="dropdown-item" href="../Membership info.html">Membership</a></li>
+                            <li><a class="dropdown-item" href="../help center.html">Help Center</a></li>
+                            <li><a class="dropdown-item" href="../privacy policy.html">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="../terms of services.html">Terms of Service</a></li>
+                            <li><a class="dropdown-item" href="../Book tickets.html">Book Tickets</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0 w-100"><a class="btn-ticket" href="#">BOOK TICKETS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===========================
+         HERO SECTION
+    ============================ -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <h1 class="hero-title">Meet Our<br>Animals</h1>
+                        <p class="hero-subtitle" id="heroSubtitle">Discover the magnificent creatures that call Zoorld home</p>
+                        <a href="#animals-grid" class="btn btn-primary-custom">Explore Wildlife <i class="fas fa-arrow-down"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===========================
+         FILTER SECTION
+    ============================ -->
+    <section class="filter-section" id="filterSection">
+        <div class="container">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-4 col-md-6">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" id="animalSearch" placeholder="Search animals...">
+                        <button class="search-clear" id="searchClear" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="filter-categories" id="filterCategories">
+                        <button class="filter-btn active" data-category="all">All Animals</button>
+                        <button class="filter-btn" data-category="mammals"><i class="fas fa-paw"></i> Mammals</button>
+                        <button class="filter-btn" data-category="birds"><i class="fas fa-wind"></i> Birds</button>
+                        <button class="filter-btn" data-category="reptiles"><i class="fas fa-egg"></i> Reptiles</button>
+                        <button class="filter-btn" data-category="amphibians"><i class="fas fa-water"></i> Amphibians</button>
+                        <button class="filter-btn" data-category="aquatic"><i class="fas fa-tint"></i> Aquatic</button>
+                        <button class="filter-btn" data-category="endangered"><i class="fas fa-exclamation-triangle"></i> Endangered</button>
+                    </div>
+                </div>
+            </div>
+            <div class="results-info">
+                <span id="resultsCount">Showing all animals</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         ANIMALS GRID
+    ============================ -->
+<section class="animals-section" id="animals-grid">
+  <div class="container">
+    <div class="animals-grid" id="animalsGrid">
+      <!-- Animal cards will be dynamically injected here by main.js -->
+
+    </div>
+  </div>
+</section>
+
+    <!-- ===========================
+         CTA SECTION
+    ============================ -->
+    <section class="cta-section" id="ctaSection">
+        <div class="cta-bg"></div>
+        <div class="cta-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="cta-title">Ready for a Wild Adventure?</h2>
+                    <p class="cta-text">Book your visit today and get up close with our amazing animals</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary-custom"><i class="fas fa-ticket-alt"></i> Book Tickets</a>
+                        <a href="#" class="btn btn-outline-light"><i class="fas fa-calendar-alt"></i> Plan Your Visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         DYNAMIC ANIMAL DETAIL CONTAINER
+    ============================ -->
+    <div id="animalDetailContainer" style="display: none;">
+        <!-- Dynamic content will be injected here -->
+    </div>
+
+    <!-- ===========================
+         FOOTER
+    ============================ -->
+    <footer class="mega-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 col-md-12 text-center text-lg-start">
+                    <div class="footer-brand mb-3 text-warning">ZOORLD.</div>
+                    <p class="text-white-50 pe-lg-5 mb-4">
+                        Leading the world in modern conservation and ethical wildlife tourism. Join us in protecting Earth's most precious species.
+                    </p>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center text-md-start">
+                    <h5 class="footer-heading">SUPPORT & LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link-item">Donate Now</a></li>
+                        <li><a href="../volunteer program.html" class="footer-link-item">Volunteer Program</a></li>
+                        <li><a href="../privacy policy.html" class="footer-link-item">Privacy Policy</a></li>
+                        <li><a href="../terms of services.html" class="footer-link-item">Terms of Service</a></li>
+                        <li><a href="../Membership info.html" class="footer-link-item">Membership Info</a></li>
+                        <li><a href="../help center.html" class="footer-link-item">Help center</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center text-md-start">
+                    <h5 class="footer-heading">GET IN TOUCH</h5>
+                    <p class="text-white-50 small mb-3">
+                        <i class="fas fa-map-marker-alt me-2 text-white"></i> Wildlife Road, Karachi, PK<br>
+                        <i class="fas fa-envelope me-2 text-white"></i> hello@zoorld.com
+                    </p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control bg-transparent border border-secondary text-white" placeholder="Your Email">
+                        <button class="btn btn-ticket py-2 px-3">JOIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 pt-4 border-top border-secondary">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="text-white-50 small mb-0">
+                            &copy; 2026 ZOORLD CONSERVATION FOUNDATION. ALL RIGHTS RESERVED.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Transition -->
+    <div class="page-transition" id="pageTransition">
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        $(window).scroll(function() {
+            $('.navbar').toggleClass('scrolled', $(this).scrollTop() > 50);
+        });
+    </script>
+</body>
+</html>

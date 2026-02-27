@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | ZOORLD - Elite Wildlife</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --green-dark: #003221;
+            --green-deep: #001a11;
+            --green-bright: #bfdd38;
+            --white: #ffffff;
+            --light-bg: #f2f5f3;
+            --border-soft: rgba(255, 255, 255, 0.1);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Full Page Background Image */
+            background: linear-gradient(rgba(0, 15, 10, 0.7), rgba(0, 26, 17, 0.7)), 
+                        url('contact bg.jpg') center/cover no-repeat fixed;
+            color: var(--white);
+            overflow-x: hidden; 
+        }
+
+        /* --- NAVBAR --- */
+        .navbar { padding: 1.5rem 5% !important; transition: 0.4s; z-index: 1000; background: transparent !important; }
+        .navbar.scrolled { background: var(--green-dark) !important; padding: 0.8rem 5% !important; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.8rem; color: var(--white) !important; }
+        .nav-link { color: var(--white) !important; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.2px; opacity: 0.8; }
+        .nav-link:hover { opacity: 1; color: var(--green-bright) !important; }
+        
+        .btn-ticket { 
+            background: var(--green-bright); color: var(--green-deep) !important; 
+            padding: 12px 28px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; 
+            text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(137, 163, 18, 0.3);
+        }
+        .btn-ticket:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(137, 163, 18, 0.4); }
+
+        /* --- HERO --- */
+        .page-header {
+            
+            height: 50vh;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            background: transparent;
+        }
+        .hero-title { font-family: 'Playfair Display'; font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; color: var(--white); line-height: 1; }
+
+        /* --- CONTACT SECTION --- */
+        .contact-wrapper { margin-top: -80px; padding-bottom: 120px; position: relative; z-index: 10; }
+        .contact-card {
+            background: var(--white); border-radius: 40px; overflow: hidden;
+            border: none; box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Info Sidebar */
+        .info-sidebar {
+            background: var(--green-dark); color: var(--white); padding: 60px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .info-item { display: flex; align-items: flex-start; margin-bottom: 30px; }
+        .info-item i { font-size: 1.2rem; color: var(--green-bright); margin-right: 20px; margin-top: 5px; }
+        .info-item h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 5px; }
+        .info-item p { font-size: 1.1rem; font-weight: 300; margin: 0; }
+
+        /* Form side */
+        .form-content { padding: 60px; background: var(--white); color: var(--green-dark); }
+        .form-label-custom { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--green-bright); letter-spacing: 1px; }
+        
+        .form-control {
+            border: 1px solid #eee; border-radius: 12px; padding: 15px 20px;
+            background: #f9fbf9; transition: 0.3s;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 4px rgba(137, 163, 18, 0.1); border-color: var(--green-bright); background: white;
+        }
+
+        .btn-send {
+            background: var(--green-dark); color: var(--white);
+            width: 100%; padding: 20px; border: none; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 3px; border-radius: 15px;
+            margin-top: 20px; transition: 0.4s;
+        }
+        .btn-send:hover { background: var(--green-bright); color: var(--green-deep); transform: scale(1.02); }
+
+        /* --- UPDATED ABOUT-STYLE FOOTER --- */
+        .mega-footer { 
+            background: #000000; 
+            padding: 100px 0 50px; 
+            color: white; 
+            border-top: 1px solid var(--border-soft);
+        }
+        .footer-top { margin-bottom: 80px; }
+        .footer-brand { font-family: 'Playfair Display'; font-size: 3.5rem; font-weight: 900; color: var(--green-bright); line-height: 1; }
+        .footer-tagline { font-size: 1.1rem; opacity: 0.7; max-width: 400px; margin-top: 20px; font-weight: 300; }
+        
+        .footer-heading { 
+            font-size: 0.8rem; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 2px; color: var(--green-bright); margin-bottom: 25px; 
+        }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--white); padding-left: 5px; }
+        
+        .footer-link-item { color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; display: block; margin-bottom: 12px; }
+        .footer-link-item:hover { color: var(--green-bright); }
+        
+        .social-circle { width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 10px; transition: 0.3s; text-decoration: none; }
+        .social-circle:hover { background: var(--green-bright); color: var(--green-deep); }
+
+        .social-link { 
+            width: 50px; height: 50px; border: 1px solid rgba(255,255,255,0.1); 
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 50%; color: white; margin-right: 15px; transition: 0.3s;
+        }
+        .social-link:hover { background: var(--green-bright); color: var(--green-deep); border-color: var(--green-bright); transform: translateY(-5px); }
+
+        .footer-bottom { 
+            padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); 
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+        }
+
+        @media (max-width: 991px) {
+            .info-sidebar { padding: 40px; }
+            .form-content { padding: 40px; }
+            .footer-brand { font-size: 2.5rem; }
+            .footer-bottom { justify-content: center; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">ZOORLD.</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="fas fa-bars text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="E-PROJECT (Meet Our Animals)/Meet Our Animals.html">Animals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More <span style="font-size: 0.8rem;">⋯</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="volunteer program.html">Volunteer</a></li>
+                            <li><a class="dropdown-item" href="Membership info.html">Membership</a></li>
+                            <li><a class="dropdown-item" href="help center.html">Help Center</a></li>
+                            <li><a class="dropdown-item" href="privacy policy.html">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="terms of services.html">Terms of Service</a></li>
+                            <li><a class="dropdown-item" href="Book tickets.html">Book Tickets</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3 w-100 mt-2 mt-lg-0">
+                        <a class="btn btn-ticket d-block text-center" href="#">BOOK TICKETS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="hero-title">Get In <span style="color: var(--green-bright);">Touch.</span></h1>
+            <p class="text-white opacity-75 mt-3">Elite Wildlife Support & General Inquiries</p>
+        </div>
+    </header>
+
+    <div class="container contact-wrapper">
+        <div class="contact-card">
+            <div class="row g-0">
+                <div class="col-lg-5 info-sidebar">
+                    <div>
+                        <h2 class="mb-5 fw-900" style="font-family: 'Playfair Display';">HQ Contact</h2>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h5>Location</h5>
+                                <p>888 Wild Frontier Parkway,<br>Northern Reserve, ZW 4040</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h5>Direct Line</h5>
+                                <p>+1 (800) ZOORLD-ELITE</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h5>Park Hours</h5>
+                                <p>Mon - Sun: 08:00 - 20:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-box mt-5">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="form-content">
+                        <h3 class="mb-4 fw-800" style="font-family: 'Playfair Display';">Send a Transmission</h3>
+                        
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <label class="form-label-custom">Full Identity</label>
+                                <input type="text" class="form-control shadow-none" id="userName" placeholder="John Doe">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label-custom">Electronic Mail</label>
+                                <input type="email" class="form-control shadow-none" id="userEmail" placeholder="j.doe@frontier.com">
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label-custom">Inquiry Type</label>
+                                <select class="form-control shadow-none">
+                                    <option>General Inquiry</option>
+                                    <option>VIP Safari Booking</option>
+                                    <option>Conservation Partnership</option>
+                                    <option>Media & Press</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label-custom">Message Details</label>
+                                <textarea class="form-control shadow-none" id="userMsg" style="height: 150px" placeholder="How can our rangers assist you today?"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-send">Execute Dispatch</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mega-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 col-md-12 text-center text-lg-start">
+                    <div class="footer-brand mb-3">ZOORLD.</div>
+                    <p class="text-white-50 pe-lg-5 mb-4">
+                        Leading the world in modern conservation and ethical wildlife tourism. Join us in protecting Earth's most precious species.
+                    </p>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center text-md-start">
+                    <h5 class="footer-heading">SUPPORT & LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link-item">Donate Now</a></li>
+                        <li><a href="volunteer program.html" class="footer-link-item">Volunteer Program</a></li>
+                        <li><a href="privacy policy.html" class="footer-link-item">Privacy Policy</a></li>
+                        <li><a href="terms of services.html" class="footer-link-item">Terms of Service</a></li>
+                        <li><a href="Membership info.html" class="footer-link-item">Membership Info</a></li>
+                        <li><a href="help center.html" class="footer-link-item">Help center</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center text-md-start">
+                    <h5 class="footer-heading">GET IN TOUCH</h5>
+                    <p class="text-white-50 small mb-3">
+                        <i class="fas fa-map-marker-alt me-2 text-white"></i> Wildlife Road, Karachi, PK<br>
+                        <i class="fas fa-envelope me-2 text-white"></i> hello@zoorld.com
+                    </p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control bg-transparent border border-secondary text-white" placeholder="Your Email">
+                        <button class="btn btn-ticket py-2 px-3">JOIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-logo-bg">ZOORLD</div>
+            <div class="mt-4 text-center">
+                <p class="text-white-50 small mb-0">
+                    2026 ZOORLD CONSERVATION FOUNDATION. ALL RIGHTS RESERVED.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            var nav = document.querySelector('.navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        };
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const msg = document.getElementById('userMsg').value.trim();
+
+            if (!name || !email || !msg) {
+                alert("⚠️ Transmission Incomplete: Please ensure all mandatory data points are provided.");
+            } else {
+                alert("✅ Success: Your dispatch has been securely encrypted and transmitted to ZOORLD HQ.");
+                this.reset();
+            }
+        });
+    </script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

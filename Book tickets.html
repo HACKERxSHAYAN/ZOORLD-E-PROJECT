@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Your Pass | ZOORLD</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --green-dark: #003221;
+            --green-deep: #001a11;
+            --green-bright: #d4f01e;
+            --white: #ffffff;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--green-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background: linear-gradient(rgba(0, 26, 17, 0.7), rgba(0, 26, 17, 0.85)), 
+                        url('book tickets image.jpg') center/cover no-repeat fixed;
+            
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            padding: 1.2rem 5% !important;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        .navbar.scrolled {
+            background: var(--green-deep) !important;
+            padding: 0.8rem 5% !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(212, 240, 30, 0.15); 
+        }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.8rem; color: var(--white) !important; }
+        .nav-link { color: var(--white) !important; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.2px; margin: 0 10px; opacity: 0.8; transition: 0.3s; }
+        .nav-link:hover { color: var(--green-bright) !important; opacity: 1; }
+        .btn-ticket { background: var(--green-bright); color: var(--green-deep) !important; padding: 10px 24px !important; border-radius: 4px; font-weight: 800 !important; font-size: 0.75rem; text-decoration: none; border: none; transition: 0.3s; }
+        .btn-ticket:hover { background: #fff; transform: translateY(-2px); }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            background: var(--green-deep) !important;
+            border: 1px solid rgba(212, 240, 30, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .dropdown-item {
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .dropdown-item:hover {
+            background: var(--green-bright);
+            color: var(--green-deep);
+        }
+
+        /* --- HERO --- */
+        .header-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+        .header-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); color: white; font-weight: 900; line-height: 1.1; text-shadow: 2px 4px 20px rgba(0,0,0,0.4); }
+        .header-hero span { color: var(--green-bright); }
+
+        /* --- MAIN CARD --- */
+        .main-card {
+            background: rgba(255, 255, 255, 0.96); 
+            backdrop-filter: blur(15px);
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            margin-bottom: 80px;
+        }
+
+        .form-section { padding: 50px; }
+        .summary-section {
+            background: var(--green-deep);
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section-tag { color: var(--green-bright); font-weight: 800; letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .form-label { font-weight: 700; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        
+        .form-control, .form-select {
+            border: none;
+            border-bottom: 2px solid #eee;
+            border-radius: 0;
+            padding: 12px 0;
+            background: transparent !important;
+            font-weight: 600;
+            color: var(--green-dark);
+            transition: 0.3s;
+        }
+        .form-control:focus { box-shadow: none; border-bottom-color: var(--green-bright); }
+
+        /* --- TICKET PREVIEW DESIGN --- */
+        .ticket-visual {
+            background: rgba(255,255,255,0.05);
+            border: 1px dashed rgba(255,255,255,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* --- SUMMARY --- */
+        .summary-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 15px 0; display: flex; justify-content: space-between; font-size: 0.95rem; }
+        .total-price { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 6vw, 5rem); color: var(--green-bright); font-weight: 900; line-height: 1; margin: 15px 0; }
+
+        /* --- FOOTER --- */
+        .mega-footer { background: #050505; color: #fff; padding: 100px 0 40px; position: relative; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--green-bright); }
+        .footer-heading { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 25px; color: var(--white); }
+        .footer-link-item { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 12px; transition: 0.3s; font-size: 0.9rem; }
+        .footer-link-item:hover { color: var(--green-bright); padding-left: 5px; }
+        .social-circle { width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; margin-right: 10px; transition: 0.3s; text-decoration: none; }
+        .social-circle:hover { background: var(--green-bright); color: var(--green-deep); }
+        .big-logo-bg { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 18vw, 15rem); font-weight: 900; text-align: center; opacity: 0.03; line-height: 1; color: white; margin-top: 30px; pointer-events: none; }
+
+        @media (max-width: 991.98px) {
+            .navbar { background: var(--green-deep) !important; padding: 15px 5% !important; border-bottom: 1px solid rgba(212, 240, 30, 0.1); }
+            .form-section, .summary-section { padding: 40px 25px; }
+            .main-card { border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top scrolled">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ZOORLD.</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center mt-3 mt-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="E-PROJECT (Meet Our Animals)/Meet Our Animals.html">Animals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Book tickets.html" style="color: var(--green-bright) !important;">Book Tickets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More <span style="font-size: 0.8rem;">⋯</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="volunteer program.html">Volunteer</a></li>
+                            <li><a class="dropdown-item" href="Membership info.html">Membership</a></li>
+                            <li><a class="dropdown-item" href="help center.html">Help Center</a></li>
+                            <li><a class="dropdown-item" href="privacy policy.html">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="terms of services.html">Terms of Service</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3 w-100 mt-2 mt-lg-0"><a class="btn-ticket d-block text-center" href="#">BOOK TICKETS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-hero">
+        <div class="container">
+            <span class="section-tag" style="color: white; opacity: 0.8;">The Wild Calls</span>
+            <h1>SECURE YOUR <span>ENTRY.</span></h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card main-card">
+            <div class="row g-0">
+                <div class="col-lg-7 form-section">
+                    <h3 class="mb-4 fw-bold" style="font-family: 'Playfair Display'; font-size: 2rem;">Guest Registration</h3>
+                    <form id="bookingForm">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" id="visitorName" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Visit Date</label>
+                                <input type="date" class="form-control" id="dateInput" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ticket Category</label>
+                                <select class="form-select" id="typeSelect">
+                                    <option value="25" selected>Standard Adult ($25)</option>
+                                    <option value="15">Junior / Senior ($15)</option>
+                                    <option value="50">Elite VIP Pass ($50)</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Number of People</label>
+                                <input type="number" class="form-control" id="countInput" value="1" min="1" max="10">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-ticket w-100 py-3 mt-5 fs-6 shadow-sm">CONFIRM RESERVATION</button>
+                    </form>
+                </div>
+
+                <div class="col-lg-5 summary-section">
+                    <div>
+                        <h4 class="mb-4 text-uppercase fw-bold" style="letter-spacing: 2px; font-size: 0.85rem; opacity: 0.7;">Booking Summary</h4>
+                        
+                        <div class="ticket-visual">
+                            <div class="summary-item" style="border:none; padding-top:0;">
+                                <span class="small opacity-50">TICKET HOLDER</span>
+                                <span id="displayVisitorName" class="fw-bold">Valued Guest</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Tier</span>
+                                <span id="displayType" class="fw-bold text-white">Standard</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Guests</span>
+                                <span id="displayCount" class="fw-bold text-white">1 Person</span>
+                            </div>
+                            <div class="summary-item" style="border:none; padding-bottom:0;">
+                                <span>Visit Date</span>
+                                <span id="displayDate" class="fw-bold text-white-50">Select Date</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="mb-0 text-white-50 text-uppercase small" style="letter-spacing: 2px;">Total Amount Due</p>
+                        <div class="total-price">$<span id="totalDisplay">25</span></div>
+                        <p class="small text-white-50"><i class="fas fa-shield-alt text-success"></i> Secured by ZOORLD Encryption.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mega-footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 col-md-12 text-center text-lg-start">
+                    <div class="footer-brand mb-3">ZOORLD.</div>
+                    <p class="text-white-50 pe-lg-5 mb-4">
+                        Leading the world in modern conservation and ethical wildlife tourism. Join us in protecting Earth's most precious species.
+                    </p>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center text-md-start">
+                    <h5 class="footer-heading">Support & Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="E-PROJECT.HTML#donate" class="footer-link-item">Donate Now</a></li>
+                        <li><a href="#" class="footer-link-item">Volunteer Program</a></li>
+                        <li><a href="privacy policy.html" class="footer-link-item">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link-item">Terms of Service</a></li>
+                        <li><a href="#" class="footer-link-item">Membership Info</a></li>
+                        <li><a href="#" class="footer-link-item">Help center</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 text-center text-md-start">
+                    <h5 class="footer-heading">Get In Touch</h5>
+                    <p class="text-white-50 small mb-3">
+                        <i class="fas fa-map-marker-alt me-2 text-white"></i> Wildlife Road, Karachi, PK<br>
+                        <i class="fas fa-envelope me-2 text-white"></i> hello@zoorld.com
+                    </p>
+                    <div class="input-group mb-3 border border-secondary p-1 rounded">
+                        <input type="email" class="form-control bg-transparent border-0 text-white shadow-none" placeholder="Your Email">
+                        <button class="btn btn-ticket py-2 px-3">JOIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="big-logo-bg">ZOORLD</div>
+            <div class="mt-4 text-center">
+                <p class="text-white-50 small mb-0">© 2026 ZOORLD CONSERVATION FOUNDATION. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        $(window).scroll(function(){
+            if($(this).scrollTop() > 30) $('.navbar').addClass('scrolled');
+            else $('.navbar').removeClass('scrolled');
+        });
+
+        function updateSummary() {
+            let price = $('#typeSelect').val();
+            let count = $('#countInput').val();
+            let date = $('#dateInput').val();
+            let name = $('#visitorName').val();
+            let typeName = $('#typeSelect option:selected').text().split(' (')[0];
+            let total = price * count;
+
+            $('#totalDisplay').text(total);
+            $('#displayCount').text(count + (count > 1 ? " People" : " Person"));
+            $('#displayType').text(typeName);
+            $('#displayDate').text(date ? date : "Select Date");
+            $('#displayVisitorName').text(name ? name : "Valued Guest");
+        }
+
+        $('#typeSelect, #countInput, #dateInput, #visitorName').on('input change', updateSummary);
+
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault();
+            const name = $('#visitorName').val();
+            alert("Reservation Confirmed for " + name + "! Redirecting to secure gateway...");
+        });
+    </script>
+</body>
+</html>

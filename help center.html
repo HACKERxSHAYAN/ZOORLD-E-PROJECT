@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Help Center | ZOORLD</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --green-dark: #003221;
+            --green-deep: #001a11;
+            --green-bright: #bfdd38;
+            --white: #ffffff;
+            --light-bg: #f2f5f3;
+            --border-soft: rgba(255, 255, 255, 0.1);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--green-deep);
+            color: var(--white);
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar { 
+            padding: 1.2rem 5% !important; 
+            background: transparent !important; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1050;
+        }
+        .navbar.scrolled {
+            background: var(--green-deep) !important;
+            padding: 0.8rem 5% !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(212, 240, 30, 0.2);
+        }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.8rem; color: var(--white) !important; }
+        .nav-link { color: var(--white) !important; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.2px; margin: 0 10px; opacity: 0.8; transition: 0.3s; }
+        .nav-link:hover { color: var(--green-bright) !important; opacity: 1; }
+        
+        .btn-ticket { 
+            background: var(--green-bright); 
+            color: var(--green-deep) !important; 
+            padding: 10px 24px !important; 
+            border-radius: 4px; 
+            font-weight: 800 !important; 
+            font-size: 0.75rem; 
+            text-decoration: none; 
+            border: none; 
+            transition: 0.3s; 
+        }
+        .btn-ticket:hover { background: var(--white); }
+
+        /* --- DROPDOWN MENU --- */
+        .dropdown-menu {
+            background: var(--green-deep);
+            border: 1px solid rgba(212, 240, 30, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .dropdown-item {
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .dropdown-item:hover {
+            background: var(--green-bright);
+            color: var(--green-deep);
+        }
+
+        /* --- RESPONSIVE HERO --- */
+        .help-hero {
+            min-height: 45vh;
+            padding: 120px 0 60px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(to bottom, rgba(0, 50, 33, 0.8), var(--green-deep)), 
+                        url('https://images.unsplash.com/photo-1516422317953-268d61667418?auto=format&fit=crop&q=80') center/cover;
+            text-align: center;
+        }
+        .hero-title { font-family: 'Playfair Display'; font-size: clamp(2.2rem, 8vw, 4rem); line-height: 1.1; }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(191, 221, 56, 0.1);
+            color: var(--green-bright);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        /* --- CATEGORY GRID --- */
+        .category-section { padding: 60px 0; }
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-soft);
+            padding: 35px;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+        }
+        .stat-card:hover {
+            background: var(--white);
+            transform: translateY(-5px);
+        }
+        .stat-card:hover * { color: var(--green-deep) !important; }
+        
+        .icon-blob {
+            width: 60px; height: 60px;
+            background: rgba(191, 221, 56, 0.1);
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--green-bright);
+            margin-bottom: 20px;
+        }
+        .stat-card:hover .icon-blob { background: var(--green-dark); color: var(--white); }
+
+        /* --- FAQ SECTION --- */
+        .faq-section { 
+            background: var(--light-bg); 
+            color: var(--green-dark); 
+            padding: 80px 0; 
+            border-radius: 40px 40px 0 0; 
+        }
+        .faq-title { font-family: 'Playfair Display'; font-size: clamp(2rem, 6vw, 3.5rem); }
+        
+        .accordion-item { 
+            border: 1px solid rgba(0,0,0,0.08); 
+            margin-bottom: 12px; 
+            border-radius: 12px !important; 
+            overflow: hidden; 
+            background: var(--white);
+        }
+        .accordion-button { 
+            padding: 20px; 
+            font-weight: 700; 
+            font-size: 1rem;
+            box-shadow: none !important;
+        }
+        .accordion-button:not(.collapsed) { background: var(--green-bright); color: var(--green-deep); }
+
+        /* --- FOOTER --- */
+        .mega-footer { background: var(--green-deep); padding: 80px 0 40px; border-top: 1px solid var(--border-soft); }
+        .footer-brand { font-family: 'Playfair Display'; font-size: 2.5rem; font-weight: 900; color: var(--green-bright); }
+        .footer-heading { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--green-bright); margin-bottom: 20px; letter-spacing: 1px;}
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--white); padding-left: 5px; }
+
+        /* --- MOBILE TWEAKS --- */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: var(--green-deep);
+                margin-top: 15px;
+                border-radius: 15px;
+                padding: 20px;
+                border: 1px solid var(--green-bright);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 1rem !important; }
+            .help-hero { padding-top: 100px; }
+            .faq-section { border-radius: 30px 30px 0 0; padding: 60px 0; }
+            .footer-top > div { margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ZOORLD.</a>
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center pt-3 pt-lg-0">
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="E-PROJECT (Meet Our Animals)/Meet Our Animals.html">Animals</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 text-white" href="help center.html" style="color: var(--green-bright) !important;">Help Center</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-3 dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More <span style="font-size: 0.8rem;">⋯</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="volunteer program.html">Volunteer</a></li>
+                            <li><a class="dropdown-item" href="Membership info.html">Membership</a></li>
+                            <li><a class="dropdown-item" href="privacy policy.html">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="terms of services.html">Terms of Service</a></li>
+                            <li><a class="dropdown-item" href="Book tickets.html">Book Tickets</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item mt-2 mt-lg-0 ms-lg-7 p-2"><a class="btn-ticket" href="#">Book tickets</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="help-hero">
+        <div class="container px-4">
+            <span class="hero-tag">Official Support Portal</span>
+            <h1 class="hero-title fw-900">Elite Intelligence <br><span style="color: var(--green-bright);">& Assistance.</span></h1>
+            <p class="mt-3 opacity-50 lead fs-6">Direct access to reserve protocols and member support.</p>
+        </div>
+    </header>
+
+    <section class="category-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="stat-card">
+                        <div class="icon-blob"><i class="fas fa-id-card"></i></div>
+                        <h4 style="font-family: 'Playfair Display';">Membership</h4>
+                        <p class="opacity-50 small">Manage your status, upgrade tiers, and access reserve keys.</p>
+                        <a href="#" class="stretched-link"></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="stat-card">
+                        <div class="icon-blob"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h4 style="font-family: 'Playfair Display';">Donations</h4>
+                        <p class="opacity-50 small">Track your contribution impact and certificate transmissions.</p>
+                        <a href="#" class="stretched-link"></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="stat-card">
+                        <div class="icon-blob"><i class="fas fa-user-shield"></i></div>
+                        <h4 style="font-family: 'Playfair Display';">Volunteer HQ</h4>
+                        <p class="opacity-50 small">Application status for the 2026 Northern Reserve Program.</p>
+                        <a href="#" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="row mb-4 px-3">
+                <div class="col-12">
+                    <h2 class="faq-title fw-900">Knowledge <br>Base.</h2>
+                    <p class="text-muted small mt-2">Need direct help? <a href="#" class="text-success fw-bold">Contact HQ</a></p>
+                </div>
+            </div>
+            
+            <div class="row px-2">
+                <div class="col-12">
+                    <div class="accordion accordion-flush" id="enhancedFaq">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f1">
+                                    How are donation funds allocated?
+                                </button>
+                            </h2>
+                            <div id="f1" class="accordion-collapse collapse" data-bs-parent="#enhancedFaq">
+                                <div class="accordion-body">
+                                    85% goes to anti-poaching and habitat restoration. 15% supports education and reserve maintenance.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">
+                                    "Elite Ranger" Requirements?
+                                </button>
+                            </h2>
+                            <div id="f2" class="accordion-collapse collapse" data-bs-parent="#enhancedFaq">
+                                <div class="accordion-body">
+                                    Requires completion of three guided expeditions and contribution to the habitat fund.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mega-footer">
+        <div class="container px-4">
+            <div class="row footer-top">
+                <div class="col-12 col-lg-5">
+                    <div class="footer-brand">ZOORLD.</div>
+                    <p class="opacity-50 mt-2 small">Preserving the majestic beauty of the wild through elite conservation.</p>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h5 class="footer-heading">Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Membership</a></li>
+                        <li><a href="#">Terms of services</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Volunteer program</a></li>
+                        <li><a href="#">Help center</a></li>
+                        <li><a href="#">Donate </a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <div class="d-flex border-bottom border-secondary pb-2">
+                        <input type="email" class="bg-transparent border-0 text-white w-100 shadow-none small" placeholder="Email Address">
+                        <button class="bg-transparent border-0 text-white"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 mt-5 border-top border-secondary opacity-50 x-small">
+                © 2026 ZOORLD WILDLIFE CONSERVATION.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
